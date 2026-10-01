@@ -7,10 +7,34 @@ const app = express();
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
-db.defaults({ books: [] }).write();
+db.defaults({
+    books: [],
+    accounts: []
+}).write();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("Express Server is Running Successfully!");
+});
+
+// GET all accounts
+app.get("/accounts", (req, res) => {
+    res.json(db.get("accounts").value());
+});
+
+// POST a new account
+app.post("/accounts", (req, res) => {
+    const account = {
+        id: Date.now(),
+        ...req.body
+    };
+
+    db.get("accounts")
+        .push(account)
+        .write();
+
+    res.status(201).json(account);
 });
 
 const PORT = process.env.PORT || 8000;
