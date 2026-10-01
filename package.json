@@ -1,0 +1,16 @@
+{
+  "name": "coding-activity-2-2",
+  "version": "1.0.0",
+  "description": "Coding Activity 2.2",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Priyadharshini",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "lowdb": "^1.0.0"
+  }
+}
